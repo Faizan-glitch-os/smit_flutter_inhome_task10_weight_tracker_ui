@@ -14,30 +14,33 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       home: Scaffold(
-        body: Stack(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/background.jpg',
-              height: deviceheight * 0.3,
-              fit: BoxFit.fill,
+            Stack(
+              children: [
+                Container(
+                  height: deviceheight * 0.3,
+                  decoration: BoxDecoration(color: Colors.yellow),
+                ),
+                Positioned(
+                  child: Container(
+                    height: deviceheight * .25,
+                    margin: EdgeInsets.symmetric(horizontal: 20),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.red),
+                  ),
+                ),
+                Positioned(
+                  child: Container(
+                    height: 100,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle, color: Colors.green),
+                  ),
+                )
+              ],
             ),
-            Positioned(
-              child: Container(
-                height: deviceheight * .25,
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10), color: Colors.red),
-              ),
-            ),
-            Positioned(
-              // top: 2,
-              // left: 2,
-              child: Container(
-                height: deviceheight * .1,
-                decoration:
-                    BoxDecoration(shape: BoxShape.circle, color: Colors.green),
-              ),
-            )
           ],
         ),
       ),
