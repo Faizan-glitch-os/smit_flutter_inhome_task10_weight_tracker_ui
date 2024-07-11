@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'statistics-tab.dart';
+import 'history-tab.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -9,40 +12,31 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final deviceWidth = MediaQuery.of(context).size.width;
-    final deviceheight = MediaQuery.of(context).size.height;
-
     return MaterialApp(
-      home: Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Stack(
-              children: [
-                Container(
-                  height: deviceheight * 0.3,
-                  decoration: BoxDecoration(color: Colors.yellow),
-                ),
-                Positioned(
-                  child: Container(
-                    height: deviceheight * .25,
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.red),
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+            backgroundColor: Colors.white70,
+            appBar: AppBar(
+              title: Text('Weight Tracker'),
+              foregroundColor: Color.fromRGBO(83, 161, 87, 1.0),
+              backgroundColor: Color.fromRGBO(19, 48, 20, 1.0),
+              bottom: TabBar(
+                labelColor: Color.fromRGBO(83, 161, 87, 1.0),
+                indicatorColor: Color.fromRGBO(83, 161, 87, 1.0),
+                tabs: [
+                  Tab(
+                    icon: Icon(Icons.auto_graph),
+                    text: 'STATISTICS',
                   ),
-                ),
-                Positioned(
-                  child: Container(
-                    height: 100,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: Colors.green),
+                  Tab(
+                    icon: Icon(Icons.history),
+                    text: 'HISTORY',
                   ),
-                )
-              ],
+                ],
+              ),
             ),
-          ],
-        ),
+            body: TabBarView(children: [StatisticsTab(), HistoryTab()])),
       ),
     );
   }
